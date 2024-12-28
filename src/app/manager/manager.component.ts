@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; 
 import { CommonModule, NgFor } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+//import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms'
 import { Manager } from '../shared/manager.model';
 import { DashboardService } from '../shared/dashboard.service';
@@ -23,8 +23,8 @@ export class ManagerComponent implements OnInit {
 
   constructor(public service: DashboardService,
     private router: Router,
-    private toastr: ToastrService) {}
-
+   ) {}
+//private toastr: ToastrService
   ngOnInit(): void {
     this.service.getList();
   }
@@ -41,13 +41,19 @@ export class ManagerComponent implements OnInit {
     this.service.deleteData(officeID)
       .subscribe({
         next: () => {
-         this.toastr.error('Deleted Successfully', 'Recored Removed');
+         //this.toastr.error('Deleted Successfully', 'Recored Removed');
          this.service.getList(); 
        },
        error: err => console.log(err),
       });
   }
-  
+  toaccountant() {
+    this.router.navigate(['/app-accountant']);
+  }
+  tologin() {
+    this.router.navigate(['/app-login']);
+  }
+
   navigateToForm() {
     this.router.navigate(['/app-manager-form']);
   }

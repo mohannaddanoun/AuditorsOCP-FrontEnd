@@ -1,1 +1,25 @@
-<p>login works!</p>
+<div style="text-align: center; margin-top: 20px; margin-buttom: 50px;">
+    <!--img src="my-logo.png" alt="My Logo" class="logo" /-->
+  </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+    
+    <p>
+      <label style="text-align: center;" for="email" >Email<label>
+      <input  type="email" name="email"  [formControl]="form.controls.email"  />
+      <p>
+    <p >
+      <label  for="password">Password<label>
+      <input  type="password" name="password" formControlName="password"  />
+      <p>
+        <button type="submit" [disabled]="form.invalid" class="button" (click)="login()">Login</button>
+  
+  
+    @if (emailIsInvalid) {
+      <p class="control-error">Please enter a valid email address.</p>
+    }
+    @if (passwordIsInvalid) {
+      <p class="control-error">Please enter a valid password.</p>
+      
+    }
+  <form>
+  

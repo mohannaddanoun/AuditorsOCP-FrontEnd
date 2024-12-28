@@ -11,36 +11,41 @@
       />
       <span *ngIf="officeName.invalid && officeName.touched">Office Name is required.</span>
     </p>
-  
-    <p>
-        <label for="phoneNumber">رقم الهاتف</label>
-        <input 
-          id="phoneNumber" 
-          name="phoneNumber" 
-          type="text" 
-          [(ngModel)]="service.newData.phoneNumber" 
-          #phoneNumber="ngModel"
-          required 
-          minlength="10" 
-          maxlength="10"
-        />
-        <span *ngIf="phoneNumber.invalid && phoneNumber.touched">
-          Phone number must be 10 digits.
-        </span>
-      </p>
-  
-    <p>
-      <label for="email">البريد الالكتروني</label>
+    <div *ngFor="let phone of service.newData.phoneNumbers; let i = index">
+      <label for="phoneNumber{{ i }}">رقم الهاتف {{ i + 1 }}</label>
       <input 
-        id="email" 
-        name="email" 
-        type="email" 
-        [(ngModel)]="service.newData.email" 
-        #email="ngModel"
-        required 
+        id="phoneNumber{{ i }}" 
+        name="phoneNumbers[{{ i }}]" 
+        type="text" 
+        [(ngModel)]="service.newData.phoneNumbers[i]" 
+        #phoneNumber="ngModel"
+        minlength="10" 
+        maxlength="10"
+        required
       />
-      <span *ngIf="email.invalid && email.touched">Valid Email is required.</span>
-    </p>
+      <button type="button" (click)="removePhoneNumber(i)">Remove</button>
+      <span *ngIf="phoneNumber.invalid && phoneNumber.touched">
+          Phone number must be 10 digits.
+      </span>
+  </div>
+  <button type="button" (click)="addPhoneNumber()">اضافة رقم هاتف</button>
+  
+  
+  <div *ngFor="let email of service.newData.emails; let i = index">
+    <label for="email{{ i }}">البريد الالكتروني {{ i + 1 }}</label>
+    <input 
+      id="email{{ i }}" 
+      name="emails[{{ i }}]" 
+      type="email" 
+      [(ngModel)]="service.newData.emails[i]" 
+      #email="ngModel"
+      required
+    />
+    <button type="button" (click)="removeEmail(i)">حذف</button>
+   
+</div>
+<button type="button" (click)="addEmail()">اضافة بريد الكتروني</button>
+
     <p>
         <label for="taxNumber">الرقم الضريبي</label>
         <input 
@@ -53,76 +58,77 @@
         />
         <span *ngIf="taxNumber.invalid && taxNumber.touched">Tax Number is required.</span>
       </p>
-  
-    <p>
-      <label for="accountantsNumber">عدد المحاسبين</label>
-      <input 
-        id="accountantsNumber" 
-        name="accountantsNumber" 
-        type="text" 
-        [(ngModel)]="service.newData.accountantsNumber" 
-        #accountantsNumber="ngModel"
-        required 
-      />
-      <span *ngIf="accountantsNumber.invalid && accountantsNumber.touched">
-        Accountants number is required.
-      </span>
-    </p>
-    <p>
-        <label for="employeesNumber">عدد الموظفين</label>
+      <p>
+        <label for="certifiedAccountants">عدد المحاسبين</label>
         <input 
-          id="employeesNumber" 
-          name="employeesNumber" 
-          type="text" 
-          [(ngModel)]="service.newData.employeesNumber" 
-          #employeesNumber="ngModel"
+          id="certifiedAccountants" 
+          name="certifiedAccountants" 
+          type="number" 
+          [(ngModel)]="service.newData.certifiedAccountants" 
+          #certifiedAccountants="ngModel"
           required 
-
+          min="0"
         />
-        <span *ngIf="employeesNumber.invalid && employeesNumber.touched">
+        <span *ngIf="certifiedAccountants.invalid && certifiedAccountants.touched">
+            Accountants number is required and must be a positive number.
+        </span>
+    </p>
+    
+    <p>
+        <label for="employees">عدد الموظفين</label>
+        <input 
+          id="employees" 
+          name="employees" 
+          type="number" 
+          [(ngModel)]="service.newData.employees" 
+          #employees="ngModel"
+          required 
+          min="0"
+        />
+        <span *ngIf="employees.invalid && employees.touched">
             Employees number is required.
         </span>
       </p>
     
     <p>
-        <label for="publicAccountant">المحاسب القانوني</label>
+        <label for="licensedAccountants">المحاسب القانوني</label>
         <input 
-          id="publicAccountant" 
-          name="publicAccountant" 
+          id="licensedAccountants" 
+          name="licensedAccountants" 
           type="text" 
-          [(ngModel)]="service.newData.publicAccountant" 
-          #publicAccountant="ngModel"
+          [(ngModel)]="service.newData.licensedAccountants" 
+          #licensedAccountants="ngModel"
           required 
         />
-        <span *ngIf="publicAccountant.invalid && publicAccountant.touched">Public Accountant is required.</span>
+        <span *ngIf="licensedAccountants.invalid && licensedAccountants.touched">icensed Accountant is required.</span>
       </p>
 
       <p>
-        <label for="leaveNumber">رقم الاجازة</label>
+        <label for="licenseNumbers">رقم الاجازة</label>
         <input 
-          id="leaveNumber" 
-          name="leaveNumber" 
+          id="licenseNumbers" 
+          name="licenseNumbers" 
           type="text" 
-          [(ngModel)]="service.newData.leaveNumber" 
-          #leaveNumber="ngModel"
+          [(ngModel)]="service.newData.licenseNumbers" 
+          #licenseNumbers="ngModel"
           required 
 
         />
-        <span *ngIf="leaveNumber.invalid && leaveNumber.touched">
+        <span *ngIf="licenseNumbers.invalid && licenseNumbers.touched">
             Leave Number is required.
         </span>
       </p>
       <p>
-        <label for="expectedBNumber">رقم الميزانية المتوقع</label>
+        <label for="expectedBudgets">رقم الميزانية المتوقع</label>
         <input 
-          id="expectedBNumber" 
-          name="expectedBNumber" 
-          type="text" 
-          [(ngModel)]="service.newData.expectedBNumber" 
-          #expectedBNumber="ngModel"
+          id="expectedBudgets" 
+          name="expectedBudgets" 
+          type="number" 
+          [(ngModel)]="service.newData.expectedBudgets" 
+          #expectedBudgets="ngModel"
           required 
         />
-        <span *ngIf="expectedBNumber.invalid && expectedBNumber.touched">
+        <span *ngIf="expectedBudgets.invalid && expectedBudgets.touched">
             Leave Number is required.
         </span>
       </p>
