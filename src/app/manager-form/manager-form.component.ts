@@ -16,7 +16,7 @@ export class ManagerFormComponent {
   constructor(public service: DashboardService, private toastr: ToastrService,private router: Router) {}
 
   onSubmit(Form: NgForm){
-    if(this.service.newData.officeID == 0)
+    if(this.service.newData.id == 0)
       this.addRecord(Form)
     else
       this.updateRecord(Form)
