@@ -11,7 +11,6 @@ if (savedForm) {
   const loadedForm = JSON.parse(savedForm);
   initialEmailValue = loadedForm.email;
 }
-
 @Component({
   selector: 'app-login',
   imports: [FormsModule, ReactiveFormsModule,CommonModule],
@@ -48,7 +47,6 @@ export class LoginComponent implements OnInit {
         window.localStorage.setItem('saved-login-form', JSON.stringify({ email: value.email }));
       }
     });
-
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 
@@ -58,7 +56,6 @@ export class LoginComponent implements OnInit {
     const enteredPassword = this.form.value.password;
     console.log(enteredEmail, enteredPassword);
   }
-
   constructor(private router: Router) {}
 
   login() {

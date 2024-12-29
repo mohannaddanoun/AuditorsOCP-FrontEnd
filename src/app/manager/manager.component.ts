@@ -8,6 +8,7 @@ import { Manager } from '../shared/manager.model';
 import { DashboardService } from '../shared/dashboard.service';
 @Component({
   selector: 'app-manager',
+  standalone:true,
   imports: [HttpClientModule, CommonModule, NgFor,RouterModule,FormsModule], 
   templateUrl: './manager.component.html',
   styleUrl: './manager.component.css'
@@ -22,9 +23,10 @@ export class ManagerComponent implements OnInit {
   totalPages: number = 0;*/
 
   constructor(public service: DashboardService,
+    
     private router: Router,
    ) {}
-//private toastr: ToastrService
+  //private toastr: ToastrService
   ngOnInit(): void {
     this.service.getList();
   }
@@ -33,8 +35,6 @@ export class ManagerComponent implements OnInit {
     this.service.newData =Object.assign({},record)
     this.navigateToForm()
   }
-
- 
 
   deleteRecord(officeID: number) {
     if(confirm('Are you sure to delete this record ?'))
@@ -53,7 +53,6 @@ export class ManagerComponent implements OnInit {
   tologin() {
     this.router.navigate(['/app-login']);
   }
-
   navigateToForm() {
     this.router.navigate(['/app-manager-form']);
   }

@@ -31,7 +31,6 @@ export class DashboardService {
     return this.http.delete(this.url+ '/'+id)
 
   }
-
   reset(studentForm : NgForm){
     studentForm.form.reset()
     this.newData = new Manager()

@@ -32,8 +32,6 @@
   </div>
   <button type="button" (click)="addPhoneNumber()">اضافة رقم هاتف</button>
   
-
-  
   
   <div *ngFor="let email of service.newData.emails; let i = index; trackBy: trackByFn">
     <label for="email{{ i }}">البريد الالكتروني {{ i + 1 }}</label>
@@ -46,7 +44,6 @@
       required
     />
     <button type="button" (click)="removeEmail(i)">حذف</button>
-   
 </div>
 <button type="button" (click)="addEmail()">اضافة بريد الكتروني</button>
 
@@ -62,6 +59,7 @@
         />
         <span *ngIf="taxNumber.invalid && taxNumber.touched">Tax Number is required.</span>
       </p>
+
       <p>
         <label for="certifiedAccountants">عدد المحاسبين</label>
         <input 
@@ -93,17 +91,16 @@
             Employees number is required.
         </span>
       </p>
-    
+
+
       <div *ngFor="let d of service.newData.licensedAccountants; let i = index; trackBy: trackByFn">
-        <label for="licensedAccountants{{ i }}">المحاسب القانوني{{ i + 1 }}</label>
+        <label for="licensedAccountants{{ i }}">المحاسب القانوني {{ i + 1 }}</label>
         <input 
           id="licensedAccountants{{ i }}" 
           name="licensedAccountantss[{{ i }}]" 
           type="text" 
           [(ngModel)]="service.newData.licensedAccountants[i]" 
           #licensedAccountants="ngModel"
-          minlength="10" 
-          maxlength="10"
           required
         />
         <button type="button" (click)="removelicensedAccountants(i)">حذف</button>
@@ -122,8 +119,7 @@
         type="text" 
         [(ngModel)]="service.newData.licenseNumbers[i]" 
         #licenseNumbers="ngModel"
-        minlength="10" 
-        maxlength="10"
+   
         required
       />
       <button type="button" (click)="removelicenseNumbers(i)">حذف</button>
@@ -149,8 +145,6 @@
             Leave Number is required.
         </span>
       </p>
-    
-  
     <button type="submit" [disabled]="Form.invalid">Save</button>
   </form>
   

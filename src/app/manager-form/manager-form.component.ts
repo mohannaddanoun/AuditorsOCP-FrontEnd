@@ -12,9 +12,8 @@ import { Manager } from '../shared/manager.model';
   styleUrl: './manager-form.component.css'
 })
 export class ManagerFormComponent {
-  
-  constructor(public service: DashboardService, private router: Router) {}
 
+  constructor(public service: DashboardService, private router: Router) {}
   trackByFn(index: number,item:any):number{
     return index;
   }
@@ -25,8 +24,6 @@ export class ManagerFormComponent {
     else
       this.updateRecord(Form)
   }
-
-
   addRecord(Form: NgForm){
     this.service.postData()
     .subscribe({
@@ -36,7 +33,6 @@ export class ManagerFormComponent {
         this.service.reset(Form)
         //this.toastr.success('Inserted Successfully', 'New Record is Added')
         this.navigateToTable()
-
       },
       error: err=> {console.log(err)}
     })
@@ -50,32 +46,27 @@ export class ManagerFormComponent {
         this.service.reset(Form)
         //this.toastr.info('Updated Successfully', 'Data is Updated')
         this.navigateToTable()
-
       },
       error: err=> {console.log(err)}
     })
-    
   }
   addPhoneNumber() {
     this.service.newData.phoneNumbers.push('');
   }
-  
   removePhoneNumber(index: number) {
     this.service.newData.phoneNumbers.splice(index, 1);
   }
+
   addEmail() {
     this.service.newData.emails.push('');
 }
-
 removeEmail(index: number) {
     this.service.newData.emails.splice(index, 1);
 }
 
-
 addlicensedAccountants() {
   this.service.newData.licensedAccountants.push('');
 }
-
 removelicensedAccountants(index: number) {
   this.service.newData.licensedAccountants.splice(index, 1);
 }
@@ -83,14 +74,9 @@ removelicensedAccountants(index: number) {
 addlicenseNumbers() {
   this.service.newData.licenseNumbers.push('');
 }
-
 removelicenseNumbers(index: number) {
   this.service.newData.licenseNumbers.splice(index, 1);
 }
-
-
-
-
 
   navigateToTable() {
     this.router.navigate(['/app-manager']);
