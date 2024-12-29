@@ -14,13 +14,13 @@ import { DashboardService } from '../shared/dashboard.service';
   styleUrl: './manager.component.css'
 })
 export class ManagerComponent implements OnInit {
-  /*filteredS: any[] = [];
+  filteredD: any[] = [];
   search: string = '';
-  paginatedS: any[] = []; 
+  paginatedD: any[] = []; 
 
   currentPage: number = 1;
-  pageSize: number = 3; 
-  totalPages: number = 0;*/
+  pageSize: number = 0; 
+  totalPages: number = 0;
 
   constructor(public service: DashboardService,
     
@@ -57,11 +57,10 @@ export class ManagerComponent implements OnInit {
     this.router.navigate(['/app-manager-form']);
   }
 
-  /*filteredStudent() {
-    this.filteredS = this.service.records.filter((student) =>
-      student.firstName.toLowerCase().includes(this.search.toLowerCase()) ||
-      student.lasttName.toLowerCase().includes(this.search.toLowerCase()) ||
-      student.email.toLowerCase().includes(this.search.toLowerCase())
+  filteredData() {
+    this.filteredD = this.service.records.filter((student) =>
+      student.officeName.toLowerCase().includes(this.search.toLowerCase()) ||
+      student.taxNumber.toLowerCase().includes(this.search.toLowerCase()) 
     );
     this.currentPage = 1; // Reset to first page
     this.updatePagination(); // Recalculate pagination
@@ -70,8 +69,12 @@ export class ManagerComponent implements OnInit {
   // Pagination logic
   updatePagination() {
     const startIndex = (this.currentPage - 1) * this.pageSize;
-    this.paginatedS = this.filteredS.slice(startIndex, startIndex + this.pageSize);
-    this.totalPages = Math.ceil(this.filteredS.length / this.pageSize);
+    this.paginatedD = this.filteredD.slice(startIndex, startIndex + this.pageSize);
+    this.totalPages = Math.ceil(this.filteredD.length / this.pageSize);
+  }
+  goToPage(page: number) {
+    this.currentPage = page;
+    this.updatePagination();
   }
 
   nextPage() {
@@ -86,7 +89,5 @@ export class ManagerComponent implements OnInit {
       this.currentPage--;
       this.updatePagination();
     }
-  }*/
+  }
 }
-
-

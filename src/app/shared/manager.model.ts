@@ -12,6 +12,10 @@ export class Manager {
   licenseNumbers: string[] = [];
   expectedBudgets: number = 0;
 }
+export interface login {
+  username: string;
+  password: string;
+}
 
 
 
