@@ -18,7 +18,7 @@
           id="phoneNumber" 
           name="phoneNumber" 
           type="text" 
-          [(ngModel)]="service.newData.phoneNumber" 
+          [(ngModel)]="service.newData.phoneNumbers" 
           #phoneNumber="ngModel"
           required 
           minlength="10" 
@@ -35,7 +35,7 @@
         id="email" 
         name="email" 
         type="email" 
-        [(ngModel)]="service.newData.email" 
+        [(ngModel)]="service.newData.emails" 
         #email="ngModel"
         required 
       />
@@ -60,7 +60,8 @@
         id="accountantsNumber" 
         name="accountantsNumber" 
         type="text" 
-        [(ngModel)]="service.newData.accountantsNumber" 
+        [(ngModel)]="service.newData.certifiedAccountants
+        " 
         #accountantsNumber="ngModel"
         required 
       />
@@ -74,7 +75,8 @@
           id="employeesNumber" 
           name="employeesNumber" 
           type="text" 
-          [(ngModel)]="service.newData.employeesNumber" 
+          [(ngModel)]="service.newData.employees
+          " 
           #employeesNumber="ngModel"
           required 
 
@@ -90,7 +92,7 @@
           id="publicAccountant" 
           name="publicAccountant" 
           type="text" 
-          [(ngModel)]="service.newData.publicAccountant" 
+          [(ngModel)]="service.newData.licensedAccountants" 
           #publicAccountant="ngModel"
           required 
         />
@@ -103,7 +105,7 @@
           id="leaveNumber" 
           name="leaveNumber" 
           type="text" 
-          [(ngModel)]="service.newData.leaveNumber" 
+          [(ngModel)]="service.newData.licenseNumbers" 
           #leaveNumber="ngModel"
           required 
 
@@ -118,7 +120,7 @@
           id="expectedBNumber" 
           name="expectedBNumber" 
           type="text" 
-          [(ngModel)]="service.newData.expectedBNumber" 
+          [(ngModel)]="service.newData.expectedBudgets" 
           #expectedBNumber="ngModel"
           required 
         />

@@ -7,7 +7,7 @@ import { Manager } from './manager.model';
   providedIn: 'root'
 })
 export class DashboardService {
-  url: string = environment.apiURL+'/Managers'
+  url: string = environment.apiURL+'/OfficeInfo'
   records: Manager[]=[]
   newData: Manager = new Manager()
   constructor(private http : HttpClient) { }
@@ -16,6 +16,8 @@ export class DashboardService {
     this.http.get(this.url)
     .subscribe({
       next: res =>{
+        console.log(res);
+        
         this.records = res as Manager[]
       },
       error : err =>{console.log(err)}
@@ -25,7 +27,7 @@ export class DashboardService {
     return this.http.post(this.url,this.newData)
   }
   putData(){
-    return this.http.put(this.url+ '/'+this.newData.officeID,this.newData)
+    return this.http.put(this.url+ '/'+this.newData.id,this.newData)
   }
   deleteData(id:number){
     return this.http.delete(this.url+ '/'+id)
