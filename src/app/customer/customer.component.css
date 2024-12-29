@@ -6,49 +6,50 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
-  }
-  
-  h2 {
+}
+
+h2 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
-  }
-  
-  form {
+}
+
+form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
     margin-bottom: 20px;
-  }
-  
-  form div {
+}
+
+form div {
     display: flex;
     flex-direction: column;
-  }
-  
-  label {
+}
+
+label {
     margin-bottom: 5px;
     font-weight: bold;
     color: #555;
-  }
-  
-  input,
-  select {
+}
+
+input,
+select {
     padding: 8px;
     font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #fff;
     transition: border-color 0.2s;
+
   }
   
   input:focus,
   select:focus {
     border-color: #113ec4;
     outline: none;
-  }
-  
-  button[type="submit"] {
+}
+
+button[type="submit"] {
     grid-column: span 2;
     padding: 10px;
     font-size: 16px;
@@ -58,6 +59,7 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s;
+
   }
   
   button[type="submit"]:hover {
@@ -67,16 +69,18 @@
   }
   
   hr {
+
     border: 0;
     height: 1px;
     background-color: #ddd;
     margin: 20px 0;
-  }
-  
-  table {
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+
   }
   .center {
     flex-grow: 1; /* Make the search input grow to fill available space */
@@ -89,30 +93,30 @@
   thead {
     background-color: #113ec4;
     color: #fff;
-  }
-  
-  thead th {
+}
+
+thead th {
     padding: 10px;
     text-align: left;
     font-size: 14px;
-  }
-  
-  tbody tr:nth-child(even) {
+}
+
+tbody tr:nth-child(even) {
     background-color: #f2f2f2;
-  }
-  
-  tbody tr:hover {
+}
+
+tbody tr:hover {
     background-color: #e9ecef;
-  }
-  
-  td,
-  th {
+}
+
+td,
+th {
     padding: 10px;
     border: 1px solid #ddd;
     font-size: 14px;
-  }
-  
-  button {
+}
+
+button {
     padding: 5px 10px;
     font-size: 14px;
     color: #fff;
@@ -121,6 +125,7 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s;
+
   }
   
   button:hover {
@@ -128,6 +133,37 @@
   }
   
   button:first-child {
+
     margin-right: 5px;
-  }
-  
+}
+
+/* تنسيق الحقول عند التعديل */
+td input[type="text"],
+td input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* تنسيق الأزرار */
+button:first-child {
+    background-color: #28a745;
+    color: white;
+}
+
+button:first-child:hover {
+    background-color: #218838;
+}
+
+/* زر الحذف */
+button:last-child {
+    background-color: #dc3545;
+    color: white;
+}
+
+button:last-child:hover {
+    background-color: #c82333;
+}

@@ -13,6 +13,8 @@ import { ToastrService } from 'ngx-toastr';
   imports: [CommonModule, NgFor, FormsModule],
 })
 export class CustomerComponent implements OnInit {
+
+  
   customers: Customer[] = [];
   customer: Customer = {
     id:0,
@@ -77,6 +79,11 @@ export class CustomerComponent implements OnInit {
   }
 
   addCustomer(): void {
+    // if (this.customer.nationalId.toString().length !== 10) {
+    //   alert('الرقم الوطني يجب أن يكون مكوناً من 10 أرقام!');
+    //   return;
+    // }
+
     this.customerService.addCustomer(this.customer).subscribe(() => {
       this.loadCustomers();
       this.resetForm();
@@ -84,6 +91,12 @@ export class CustomerComponent implements OnInit {
 
     });
   }
+
+  editIndex: number | null = null;
+
+  enableEdit(index: number): void {
+    this.editIndex = index; 
+  } 
 
   updateCustomer(customer: Customer): void {
     if (customer.id) {
@@ -93,7 +106,18 @@ export class CustomerComponent implements OnInit {
           this.loadCustomers();
           this.toastr.info('Updated Successfully', 'Data is Updated')
 
+
         });
+    }
+  }
+
+  saveEdit(): void {
+    if (this.editIndex !== null) {
+      const editedCustomer = this.customers[this.editIndex];
+      this.customerService.updateCustomer(editedCustomer.id, editedCustomer).subscribe(() => {
+        this.editIndex = null; 
+        this.loadCustomers();
+      });
     }
   }
 
