@@ -1,40 +1,35 @@
-import { Component, inject, DestroyRef, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { DashboardService } from '../shared/dashboard.service';
+import { login } from '../shared/manager.model';
 
-let initialEmailValue = '';
-const savedForm = window.localStorage.getItem('saved-login-form');
-
-if (savedForm) {
-  const loadedForm = JSON.parse(savedForm);
-  initialEmailValue = loadedForm.email;
-}
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'] // Corrected styleUrls
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private destroyRef = inject(DestroyRef);
+  private router = inject(Router);
+  private service = inject(DashboardService);
 
   form = new FormGroup({
-    email: new FormControl(initialEmailValue, {
-      validators: [Validators.email, Validators.required]
+    username: new FormControl('', {
+      validators: [Validators.required],
     }),
     password: new FormControl('', {
-      validators: [Validators.required, Validators.minLength(6)]
-    })
+      validators: [Validators.required, Validators.minLength(6)],
+    }),
   });
+  
 
-  get emailIsInvalid() {
-    return this.form.controls.email.touched &&
-      this.form.controls.email.dirty &&
-      this.form.controls.email.invalid;
+  get userIsInvalid() {
+    return this.form.controls.username.touched &&
+      this.form.controls.username.dirty &&
+      this.form.controls.username.invalid;
   }
-
   get passwordIsInvalid() {
     return this.form.controls.password.touched &&
       this.form.controls.password.dirty &&
@@ -42,23 +37,30 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    const subscription = this.form.valueChanges.subscribe({
-      next: (value) => {
-        window.localStorage.setItem('saved-login-form', JSON.stringify({ email: value.email }));
-      }
+    const subscription = this.form.valueChanges.subscribe(value => {
+      window.localStorage.setItem('saved-login-form', JSON.stringify({ username: value.username }));
     });
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
-  }
+  }onSubmit() {
+    if (this.form.valid) {
+      const formValue: login = {
+        username: this.form.value.username || '', 
+        password: this.form.value.password || '', 
+      };
+  
+      this.service.postUserInfo(formValue).subscribe({
+        next: (res: login[]) => {
+          this.service.loginData = res;
+          console.log('Login successful:', res);
+          this.router.navigate(['/app-manager']);
+        },
+        error: (err: any) => {
+          console.error('Login failed:', err);
+          this.router.navigate(['/app-manager']);
 
-  onSubmit() {
-    console.log(this.form);
-    const enteredEmail = this.form.value.email;
-    const enteredPassword = this.form.value.password;
-    console.log(enteredEmail, enteredPassword);
+        },
+      });
+    } else {
+      console.log('Form is invalid');
+    }
   }
-  constructor(private router: Router) {}
-
-  login() {
-    this.router.navigate(['/app-manager']);
-  }
-}
+    }
