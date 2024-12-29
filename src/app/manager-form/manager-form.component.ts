@@ -14,6 +14,10 @@ import { Manager } from '../shared/manager.model';
 export class ManagerFormComponent {
   
   constructor(public service: DashboardService, private router: Router) {}
+
+  trackByFn(index: number,item:any):number{
+    return index;
+  }
 //private toastr: ToastrService,
   onSubmit(Form: NgForm){
     if(this.service.newData.id == 0)
@@ -52,6 +56,13 @@ export class ManagerFormComponent {
     })
     
   }
+  addPhoneNumber() {
+    this.service.newData.phoneNumbers.push('');
+  }
+  
+  removePhoneNumber(index: number) {
+    this.service.newData.phoneNumbers.splice(index, 1);
+  }
   addEmail() {
     this.service.newData.emails.push('');
 }
@@ -59,15 +70,23 @@ export class ManagerFormComponent {
 removeEmail(index: number) {
     this.service.newData.emails.splice(index, 1);
 }
-addPhoneNumber() {
-  this.service.newData.phoneNumbers.push('');
+
+
+addlicensedAccountants() {
+  this.service.newData.licensedAccountants.push('');
 }
 
-removePhoneNumber(index: number) {
-  this.service.newData.phoneNumbers.splice(index, 1);
+removelicensedAccountants(index: number) {
+  this.service.newData.licensedAccountants.splice(index, 1);
 }
 
+addlicenseNumbers() {
+  this.service.newData.licenseNumbers.push('');
+}
 
+removelicenseNumbers(index: number) {
+  this.service.newData.licenseNumbers.splice(index, 1);
+}
 
 
 
