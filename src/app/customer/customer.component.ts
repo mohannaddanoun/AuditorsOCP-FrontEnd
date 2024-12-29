@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService, Customer } from '../shared/customer.service';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-customer',
@@ -22,6 +25,9 @@ export class CustomerComponent implements OnInit {
     companyType: '',
     financialYear: new Date().getFullYear(),
   };
+  constructor(private customerService: CustomerService, private router: Router, private toastr: ToastrService) {}
+
+   
 
   registrationEntities: string[] = [
     'وزارة الصناعة والتجارة',
@@ -56,7 +62,6 @@ export class CustomerComponent implements OnInit {
 
   filteredCompanyTypes: string[] = [];
 
-  constructor(private customerService: CustomerService) {}
 
   ngOnInit(): void {
     this.loadCustomers();
@@ -82,6 +87,8 @@ export class CustomerComponent implements OnInit {
     this.customerService.addCustomer(this.customer).subscribe(() => {
       this.loadCustomers();
       this.resetForm();
+      this.toastr.success('Inserted Successfully', 'New Record is Added')
+
     });
   }
 
@@ -97,6 +104,8 @@ export class CustomerComponent implements OnInit {
         .updateCustomer(customer.id, customer)
         .subscribe(() => {
           this.loadCustomers();
+          this.toastr.info('Updated Successfully', 'Data is Updated')
+
 
         });
     }
@@ -115,8 +124,18 @@ export class CustomerComponent implements OnInit {
   deleteCustomer(id: number): void {
     this.customerService.deleteCustomer(id).subscribe(() => {
       this.loadCustomers();
+      this.toastr.error('Deleted Successfully', 'Recored Removed');
+
     });
   }
+  toManager() {
+    this.router.navigate(['/app-manager']);
+  }
+  tologin() {
+    this.router.navigate(['/app-login']);
+  }
+
+  
 
   resetForm(): void {
     this.customer = {

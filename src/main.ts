@@ -7,6 +7,9 @@ import { provideRouter } from '@angular/router';
 import { ManagerComponent } from './app/manager/manager.component';
 import { ManagerFormComponent } from './app/manager-form/manager-form.component';
 import { LoginComponent } from './app/login/login.component';
+import { CustomerComponent } from './app/customer/customer.component';
+import { provideToastr } from 'ngx-toastr';
+
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter([
@@ -14,10 +17,12 @@ bootstrapApplication(AppComponent, {
       { path: 'app-login', component: LoginComponent },
       { path: 'app-manager', component: ManagerComponent },
       { path: 'app-manager-form', component: ManagerFormComponent },
+      { path: 'app-customer', component: CustomerComponent },
+
     ]),
     provideHttpClient(),
     provideAnimations(),    
-    //provideToastr(),   
+    provideToastr(),   
   ],
 }).catch(err => console.error(err));
 

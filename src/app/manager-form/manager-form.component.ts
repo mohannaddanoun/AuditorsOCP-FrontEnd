@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-//import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { DashboardService } from '../shared/dashboard.service';
@@ -13,11 +13,11 @@ import { Manager } from '../shared/manager.model';
 })
 export class ManagerFormComponent {
 
-  constructor(public service: DashboardService, private router: Router) {}
+  constructor(public service: DashboardService, private router: Router,  private toastr: ToastrService
+  ) {}
   trackByFn(index: number,item:any):number{
     return index;
   }
-//private toastr: ToastrService,
   onSubmit(Form: NgForm){
     if(this.service.newData.id == 0)
       this.addRecord(Form)
@@ -31,7 +31,7 @@ export class ManagerFormComponent {
         this.service.records= res as Manager[]
         console.log(res)
         this.service.reset(Form)
-        //this.toastr.success('Inserted Successfully', 'New Record is Added')
+        this.toastr.success('Inserted Successfully', 'New Record is Added')
         this.navigateToTable()
       },
       error: err=> {console.log(err)}
@@ -44,7 +44,7 @@ export class ManagerFormComponent {
         this.service.records= res as Manager[]
         console.log(res)
         this.service.reset(Form)
-        //this.toastr.info('Updated Successfully', 'Data is Updated')
+        this.toastr.info('Updated Successfully', 'Data is Updated')
         this.navigateToTable()
       },
       error: err=> {console.log(err)}
