@@ -13,6 +13,7 @@
     </p>
 
 
+
     <div *ngFor="let d of service.newData.phoneNumbers; let i = index; trackBy: trackByFn">
       <label for="phoneNumber{{ i }}">رقم الهاتف {{ i + 1 }}</label>
       <input 
@@ -24,6 +25,7 @@
         minlength="10" 
         maxlength="10"
         required
+
       />
       <button type="button" (click)="removePhoneNumber(i)">حذف</button>
       <span *ngIf="phoneNumber.invalid && phoneNumber.touched">
@@ -60,6 +62,7 @@
         <span *ngIf="taxNumber.invalid && taxNumber.touched">Tax Number is required.</span>
       </p>
 
+
       <p>
         <label for="certifiedAccountants">عدد المحاسبين</label>
         <input 
@@ -68,6 +71,7 @@
           type="number" 
           [(ngModel)]="service.newData.certifiedAccountants" 
           #certifiedAccountants="ngModel"
+
           required 
           min="0"
         />
@@ -79,11 +83,13 @@
     <p>
         <label for="employees">عدد الموظفين</label>
         <input 
+
           id="employees" 
           name="employees" 
           type="number" 
           [(ngModel)]="service.newData.employees" 
           #employees="ngModel"
+
           required 
           min="0"
         />
@@ -99,9 +105,14 @@
           id="licensedAccountants{{ i }}" 
           name="licensedAccountantss[{{ i }}]" 
           type="text" 
+
           [(ngModel)]="service.newData.licensedAccountants[i]" 
           #licensedAccountants="ngModel"
           required
+
+       
+
+
         />
         <button type="button" (click)="removelicensedAccountants(i)">حذف</button>
         <span *ngIf="licensedAccountants.invalid && licensedAccountants.touched">
@@ -134,11 +145,13 @@
       <p>
         <label for="expectedBudgets">رقم الميزانية المتوقع</label>
         <input 
+
           id="expectedBudgets" 
           name="expectedBudgets" 
           type="number" 
           [(ngModel)]="service.newData.expectedBudgets" 
           #expectedBudgets="ngModel"
+
           required 
         />
         <span *ngIf="expectedBudgets.invalid && expectedBudgets.touched">

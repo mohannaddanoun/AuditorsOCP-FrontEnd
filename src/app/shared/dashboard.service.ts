@@ -16,6 +16,8 @@ export class DashboardService {
     this.http.get(this.url)
     .subscribe({
       next: res =>{
+        console.log(res);
+        
         this.records = res as Manager[]
       },
       error : err =>{console.log(err)}

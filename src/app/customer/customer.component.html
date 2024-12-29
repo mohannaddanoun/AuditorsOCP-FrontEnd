@@ -1,0 +1,66 @@
+<div class="container">
+    <h2>إدارة العملاء</h2>
+  
+    <form (submit)="addCustomer()">
+      <div>
+        <label for="nationalId">الرقم الوطني:</label>
+        <input id="nationalId" type="number" [(ngModel)]="customer.nationalId" name="nationalId" required />
+      </div>
+      <div>
+        <label for="taxNumber">الرقم الضريبي:</label>
+        <input id="taxNumber" type="text" [(ngModel)]="customer.taxNumber" name="taxNumber" required />
+      </div>
+      <div>
+        <label for="customerName">اسم العميل:</label>
+        <input id="customerName" type="text" [(ngModel)]="customer.customerName" name="customerName" required />
+      </div>
+      <div>
+        <label for="registrationEntity">جهة التسجيل:</label>
+        <select id="registrationEntity" [(ngModel)]="customer.registrationEntity" name="registrationEntity" (change)="onRegistrationEntityChange()">
+          <option *ngFor="let entity of registrationEntities" [value]="entity">{{ entity }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="companyType">نوع الشركة:</label>
+        <select id="companyType" [(ngModel)]="customer.companyType" name="companyType">
+          <option *ngFor="let type of filteredCompanyTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="financialYear">السنة المالية:</label>
+        <input id="financialYear" type="number" [(ngModel)]="customer.financialYear" name="financialYear" required />
+      </div>
+      <button type="submit">إضافة</button>
+    </form>
+  
+    <hr />
+  
+    <table>
+      <thead>
+        <tr>
+          <th>الرقم الوطني</th>
+          <th>الرقم الضريبي</th>
+          <th>اسم العميل</th>
+          <th>جهة التسجيل</th>
+          <th>نوع الشركة</th>
+          <th>السنة المالية</th>
+          <th>إجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of customers">
+          <td>{{ customer.nationalId }}</td>
+          <td>{{ customer.taxNumber }}</td>
+          <td>{{ customer.customerName }}</td>
+          <td>{{ customer.registrationEntity }}</td>
+          <td>{{ customer.companyType }}</td>
+          <td>{{ customer.financialYear }}</td>
+          <td>
+            <button (click)="updateCustomer(customer)">تعديل</button>
+            <button (click)="deleteCustomer(customer.id)">حذف</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
