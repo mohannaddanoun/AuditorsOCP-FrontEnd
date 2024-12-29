@@ -1,0 +1,43 @@
+
+
+p {
+  flex: 1;
+}
+
+p:has(button) {
+  flex: 0;
+}
+
+label {
+  font-family: 'Quicksand', sans-serif;
+  display: block;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #000000;
+}
+
+input {
+  font-family: 'Quicksand', sans-serif;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #606980;
+  width:20%;
+  background-color: #7e838f;
+  color: white;
+}
+
+button {
+  font-family: 'Quicksand', sans-serif;
+  padding: 0.35rem 1.5rem;
+  border-radius: 4px;
+  border: none;
+  margin-top: 0.5cm;
+  background-color: #152d74;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background-color: #0056b3;
+}

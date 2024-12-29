@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; 
 import { CommonModule, NgFor } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+//import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms'
 import { Manager } from '../shared/manager.model';
 import { DashboardService } from '../shared/dashboard.service';
 @Component({
   selector: 'app-manager',
+  standalone:true,
   imports: [HttpClientModule, CommonModule, NgFor,RouterModule,FormsModule], 
   templateUrl: './manager.component.html',
   styleUrl: './manager.component.css'
@@ -22,9 +23,10 @@ export class ManagerComponent implements OnInit {
   totalPages: number = 0;*/
 
   constructor(public service: DashboardService,
+    
     private router: Router,
-    private toastr: ToastrService) {}
-
+   ) {}
+  //private toastr: ToastrService
   ngOnInit(): void {
     this.service.getList();
   }
@@ -34,20 +36,23 @@ export class ManagerComponent implements OnInit {
     this.navigateToForm()
   }
 
- 
-
   deleteRecord(officeID: number) {
     if(confirm('Are you sure to delete this record ?'))
     this.service.deleteData(officeID)
       .subscribe({
         next: () => {
-         this.toastr.error('Deleted Successfully', 'Recored Removed');
+         //this.toastr.error('Deleted Successfully', 'Recored Removed');
          this.service.getList(); 
        },
        error: err => console.log(err),
       });
   }
-  
+  toaccountant() {
+    this.router.navigate(['/app-accountant']);
+  }
+  tologin() {
+    this.router.navigate(['/app-login']);
+  }
   navigateToForm() {
     this.router.navigate(['/app-manager-form']);
   }
