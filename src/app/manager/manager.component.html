@@ -1,19 +1,19 @@
-<div class="container">
-  <!--div class="add-data-container">
-    <button class="button" (click)="toaccountant()">Accountant Dashboard</button>
-  </div-->
-  <div>
-    <input
-    class="center"
-    type="text"
-    [(ngModel)]="search"
-    (input)="filteredData()"
-    placeholder="Search here..."
-  />
 
-  <div class="add-data-container">
-    <button class="button" (click)="navigateToForm()">Add Data</button>
+<button class="button"  (click)="toCustomer()">Customer Dashboard</button>
+<div class="container">
+  <div class="header">
+
+    <input
+      class="center"
+      type="text"
+      [(ngModel)]="search"
+      (input)="filteredData()"
+      placeholder="Search here..."
+    />
+
+    <button class="button" (click)="navigateToForm()">اضافة</button>
   </div>
+</div>
 
   <div class="table-container">
     <table>
@@ -55,9 +55,7 @@
     </table>
   </div>
 
-  <div class="logout-container">
-    <button class="button" (click)="tologin()">Logout</button>
-  </div>
+
   <div class="pagination">
     <button
       *ngFor="let page of [].constructor(totalPages); let i = index"
@@ -67,4 +65,6 @@
       {{ i + 1 }}
     </button>
   </div>
+<div class="logout-container" >
+  <button class="button" (click)="tologin()">Logout</button>
 </div>

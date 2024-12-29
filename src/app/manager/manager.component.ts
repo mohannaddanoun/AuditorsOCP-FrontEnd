@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; 
 import { CommonModule, NgFor } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-//import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms'
 import { Manager } from '../shared/manager.model';
 import { DashboardService } from '../shared/dashboard.service';
@@ -19,14 +19,14 @@ export class ManagerComponent implements OnInit {
   paginatedD: any[] = []; 
 
   currentPage: number = 1;
-  pageSize: number = 0; 
+  pageSize: number = 3; 
   totalPages: number = 0;
 
-  constructor(public service: DashboardService,
-    
+  constructor(
+    public service: DashboardService,
+    private toastr: ToastrService,
     private router: Router,
    ) {}
-  //private toastr: ToastrService
   ngOnInit(): void {
     this.service.getList();
   }
@@ -41,14 +41,14 @@ export class ManagerComponent implements OnInit {
     this.service.deleteData(officeID)
       .subscribe({
         next: () => {
-         //this.toastr.error('Deleted Successfully', 'Recored Removed');
+         this.toastr.error('Deleted Successfully', 'Recored Removed');
          this.service.getList(); 
        },
        error: err => console.log(err),
       });
   }
-  toaccountant() {
-    this.router.navigate(['/app-accountant']);
+  toCustomer() {
+    this.router.navigate(['/app-customer']);
   }
   tologin() {
     this.router.navigate(['/app-login']);
@@ -58,15 +58,15 @@ export class ManagerComponent implements OnInit {
   }
 
   filteredData() {
-    this.filteredD = this.service.records.filter((student) =>
-      student.officeName.toLowerCase().includes(this.search.toLowerCase()) ||
-      student.taxNumber.toLowerCase().includes(this.search.toLowerCase()) 
+    this.filteredD = this.service.records.filter((data) =>
+      data.officeName.toLowerCase().includes(this.search.toLowerCase()) ||
+      data.taxNumber.toLowerCase().includes(this.search.toLowerCase()) 
     );
-    this.currentPage = 1; // Reset to first page
-    this.updatePagination(); // Recalculate pagination
+    this.currentPage = 1; 
+    this.updatePagination(); 
   }
 
-  // Pagination logic
+
   updatePagination() {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     this.paginatedD = this.filteredD.slice(startIndex, startIndex + this.pageSize);

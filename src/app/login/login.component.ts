@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     const subscription = this.form.valueChanges.subscribe(value => {
-      window.localStorage.setItem('saved-login-form', JSON.stringify({ username: value.username }));
+      window.localStorage.setItem('saved-login-form', JSON.stringify({ password: value.password }));
     });
   }onSubmit() {
     if (this.form.valid) {

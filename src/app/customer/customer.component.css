@@ -44,7 +44,7 @@
   
   input:focus,
   select:focus {
-    border-color: #007bff;
+    border-color: #113ec4;
     outline: none;
   }
   
@@ -53,7 +53,7 @@
     padding: 10px;
     font-size: 16px;
     color: #fff;
-    background-color: #007bff;
+    background-color: #113ec4;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -61,7 +61,9 @@
   }
   
   button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #113ec4;
+    text-align: center;
+
   }
   
   hr {
@@ -76,9 +78,16 @@
     border-collapse: collapse;
     margin-top: 20px;
   }
+  .center {
+    flex-grow: 1; /* Make the search input grow to fill available space */
+    margin: 0 20px; /* Add space between buttons and input */
+    padding: 8px;
+    text-align: center;
+    font-size: 16px;
+  }
   
   thead {
-    background-color: #007bff;
+    background-color: #113ec4;
     color: #fff;
   }
   
@@ -107,7 +116,7 @@
     padding: 5px 10px;
     font-size: 14px;
     color: #fff;
-    background-color: #007bff;
+    background-color: #113ec4;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -115,7 +124,7 @@
   }
   
   button:hover {
-    background-color: #0056b3;
+    background-color: #113ec4;
   }
   
   button:first-child {
