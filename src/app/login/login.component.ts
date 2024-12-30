@@ -38,10 +38,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     const subscription = this.form.valueChanges.subscribe(value => {
-      window.localStorage.setItem('saved-login-form', JSON.stringify({ password: value.password }));
+      window.localStorage.setItem('saved-login-form', JSON.stringify({ username: value.username, password:value.password }));
     });
   }onSubmit() {
-    if (this.form.valid) {
+   
       const formValue: login = {
         username: this.form.value.username || '', 
         password: this.form.value.password || '', 
@@ -55,12 +55,9 @@ export class LoginComponent implements OnInit {
         },
         error: (err: any) => {
           console.error('Login failed:', err);
-          this.router.navigate(['/app-manager']);
+          // this.router.navigate(['/app-manager']);
 
         },
       });
-    } else {
-      console.log('Form is invalid');
-    }
+    } 
   }
-    }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { NgForm } from '@angular/forms';
 import { login, Manager } from './manager.model';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,8 +16,14 @@ export class DashboardService {
   constructor(private http : HttpClient) { }
 
   postUserInfo(loginData: login) {
-    return this.http.post<login[]>(this.userUrl, loginData);
+    const loginUrl = `${this.userUrl}?username=${loginData.username}&password=${loginData.password}`;
+    return this.http.post<login[]>(loginUrl,loginData);
   }
+
+  registerUser(user: { username: string; password: string }): Observable<any> {
+    return this.http.post('https://localhost:7019/api/Auth/register', user);
+  }
+  
   
 
   getList(){
