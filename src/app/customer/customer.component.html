@@ -9,7 +9,7 @@
     <form (submit)="addCustomer()">
       <div>
         <label for="nationalId">الرقم الوطني:</label>
-        <input id="nationalId" type="number" [(ngModel)]="customer.nationalId" name="nationalId" required  />
+        <input id="nationalId" type="text"  [(ngModel)]="customer.nationalId" name="nationalId" maxlength="10"  required  />
       </div>
       <div>
         <label for="taxNumber">الرقم الضريبي:</label>
@@ -104,7 +104,7 @@
             </td>
             <td>
               <button *ngIf="editIndex !== i" (click)="enableEdit(i)">تعديل</button>
-              <button *ngIf="editIndex === i" (click)="saveEdit()">حفظ التعديلات</button>
+              <button *ngIf="editIndex === i" (click)="saveEdit()">حفظ</button>
               <button (click)="deleteCustomer(customer.id)">حذف</button>
             </td>
           </tr>

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 export interface Customer {
   id: number;
-  nationalId: number;
+  nationalId: string;
   taxNumber: string;
   customerName: string;
   registrationEntity: string;

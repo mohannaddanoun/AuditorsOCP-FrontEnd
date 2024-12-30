@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <p>
+      <label style="text-align: center;" for="username">User Name</label>
+      <input type="text" name="username" [formControl]="form.controls.username" />
+    </p>
+    <p>
+      <label for="password">Password</label>
+      <input type="password" name="password" formControlName="password" />
+    </p>
+    <p>
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" name="confirmPassword" formControlName="confirmPassword" />
+    </p>
+    <p>Already have an account? <a href="app-login">Login</a></p>
+    <button type="submit" [disabled]="form.invalid" class="button">Register</button>
+    
+    <p *ngIf="userIsInvalid" class="control-error">Please enter a valid User Name.</p>
+    <p *ngIf="passwordIsInvalid" class="control-error">Password must be at least 6 characters long.</p>
+    <p *ngIf="passwordMismatch" class="control-error">Passwords do not match.</p>
+  </form>
+  

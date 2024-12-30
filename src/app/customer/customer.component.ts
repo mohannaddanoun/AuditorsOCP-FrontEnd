@@ -18,7 +18,7 @@ export class CustomerComponent implements OnInit {
   customers: Customer[] = [];
   customer: Customer = {
     id:0,
-    nationalId: 0,
+    nationalId: '',
     taxNumber: '',
     customerName: '',
     registrationEntity: '',
@@ -140,7 +140,7 @@ export class CustomerComponent implements OnInit {
   resetForm(): void {
     this.customer = {
       id:0,
-      nationalId: 0,
+      nationalId: '',
       taxNumber: '',
       customerName: '',
       registrationEntity: '',
